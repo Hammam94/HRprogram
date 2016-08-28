@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="jdbc-api-1.4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jdbc-api-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/nestedvm-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sqlite-jdbc-3.5.9-universal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sqlitejdbc-nested-3.5.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/sqlite-jdbc-3.5.9-universal.jar!/" />
+    </SOURCES>
+  </library>
+</component>
