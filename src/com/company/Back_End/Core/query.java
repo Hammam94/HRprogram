@@ -14,12 +14,20 @@ public class query {
         this.stat = c.createStatement();
     }
 
+    public void openStatment(Connection c) throws SQLException {
+        stat = c.createStatement();
+    }
+
     public void closeStatment() throws SQLException {
         stat.close();
     }
 
-    public void openStatment(Connection c) throws SQLException {
-        stat = c.createStatement();
+    public void createTable(String table) throws SQLException {
+        stat.executeQuery(table);
+    }
+
+    public void dropTable(String table) throws SQLException {
+        stat.executeQuery("DROP TABLE " + table + ";");
     }
 
     /////////////////////////////                           Insertion group                              ///////////////////////////////////////////////////////////////////////////
