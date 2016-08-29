@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class viewer  {
     private controller controllerInstance = null;
+
     public void createControllerInstance(String controllerName, String methodName){
         controllerInstance = new controller(controllerName, methodName);
     }
