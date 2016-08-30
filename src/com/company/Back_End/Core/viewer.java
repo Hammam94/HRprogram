@@ -12,9 +12,8 @@ public class viewer  {
         controllerInstance = new controller(controllerName, methodName);
     }
 
-    public Object[] getdata(Object[] params) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public Object getdata(String[] params) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         return controllerInstance.getData(params);
     }
-
 
 }

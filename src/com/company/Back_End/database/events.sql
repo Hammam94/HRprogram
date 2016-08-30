@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS events(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    event_type VARCAHAR(255) NOT NULL,
+    start_time TEXT NOT NULL,
+    end_time TEXT NOT NULL,
+    number_of_days INTEGER NOT NULL
+)

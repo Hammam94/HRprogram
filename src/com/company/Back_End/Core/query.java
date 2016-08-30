@@ -23,11 +23,11 @@ public class query {
     }
 
     public void createTable(String table) throws SQLException {
-        stat.executeQuery(table);
+        stat.executeUpdate(table);
     }
 
     public void dropTable(String table) throws SQLException {
-        stat.executeQuery("DROP TABLE " + table + ";");
+        stat.executeUpdate("DROP TABLE " + table + ";");
     }
 
     /////////////////////////////                           Insertion group                              ///////////////////////////////////////////////////////////////////////////

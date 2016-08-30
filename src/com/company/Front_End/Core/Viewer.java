@@ -3,6 +3,8 @@ package com.company.Front_End.Core;
 import com.company.Back_End.Core.viewer;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -55,5 +57,4 @@ public class Viewer extends viewer {
             return true;
         }
     }
-
 }
