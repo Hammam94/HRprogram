@@ -12,6 +12,10 @@ public class viewer  {
         controllerInstance = new controller(controllerName, methodName);
     }
 
+    public void changeMethod(String newMethod) {
+        controllerInstance.changeMethodName(newMethod);
+    }
+
     public Object getdata(String[] params) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         return controllerInstance.getData(params);
     }

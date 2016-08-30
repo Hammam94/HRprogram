@@ -41,6 +41,11 @@ public class query {
         stat.executeUpdate(sql);
     }
 
+    public void attachMany(String table, String values) throws SQLException{
+        String sql = "INSERT INTO " + table + " VALUES (" + values  + ");";
+        stat.executeUpdate(sql);
+    }
+
     /////////////////////////////                           Update group                              ///////////////////////////////////////////////////////////////////////////
     public void update(String table, String data, String condition) throws SQLException {
         String sql = "UPDATE " +table + " set" + data + " where" + condition + ";";

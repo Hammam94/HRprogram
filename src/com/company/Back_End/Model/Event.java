@@ -3,6 +3,7 @@ package com.company.Back_End.Model;
 import com.company.Back_End.Core.model;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -13,7 +14,9 @@ public class Event extends model {
          this.createTable("events.sql");
     }
 
-
+    public ResultSet day(String id) throws SQLException {
+        return this.belongsToManytoMany("day", id);
+    }
 
 
 }

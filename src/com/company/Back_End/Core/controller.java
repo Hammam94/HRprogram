@@ -11,8 +11,12 @@ public class controller extends ClassLoader {
     private String controllerName, methodName;
 
     public controller (String controllerName, String methodName){
-        this.controllerName = controllerName;
+        this.controllerName = "com.company.Back_End.Controller." + controllerName;
         this.methodName = methodName;
+    }
+
+    public void changeMethodName(String newMethodName){
+        this.methodName = newMethodName;
     }
 
     public Object getData(String[] params) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
