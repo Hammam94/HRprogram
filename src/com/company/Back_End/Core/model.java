@@ -69,10 +69,14 @@ public class model{
         myquires.delete(table,condition);
     }
 
-    public void update(String[] fields, String[] values, String condition) throws SQLException {
+    public void update(String[] fields, Object[] values, String condition) throws SQLException {
         String data = "";
         for(int i = 0; i < fields.length; ++i){
-            data +=  i >= fields.length ? fields[i] + " = " + values[i] : fields[i] + " = " + values[i] + " , ";
+            if(values[i].getClass() == int.class){
+                data += i >= fields.length ? fields[i] + " = " + (int) values[i] : fields[i] + " = " + (int) values[i] + " , ";
+            } else {
+                data += i >= fields.length ? fields[i] + " = \"" + (String) values[i] + "\"" : fields[i] + " = \"" + (String) values[i] + "\" , ";
+            }
         }
         myquires.update(getClassName() + "s",data,condition);
     }
@@ -126,7 +130,12 @@ public class model{
     }
 
     public ResultSet manyToMany(String role, String id) throws SQLException {
-        return myquires.selectAllWhere(getclassNameforattach(role),  new Exception().getStackTrace()[1].getClassName() + "_id = " + id );
+        return myquires.selectAllWhere(getclassNameforattach(role),  getClassName() + "_id = " + id );
+    }
+
+    public ResultSet manyTOManyTables(String firstRole, String secondRole, String id) throws SQLException{
+        String className = getClassName();
+        return myquires.selectAllWhere(firstRole + "_" + className + "_" + secondRole, className +"_id = " + id );
     }
 
     /////////////////////////////// Private methods ////////////////////////////////////////////////////////////////////

@@ -1,26 +1,29 @@
 package com.company.Back_End.Controller;
 
-import com.company.Back_End.Model.Day;
+import com.company.Back_End.Model.Attendant;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by user on 8/30/2016.
+ * Created by user on 8/31/2016.
  */
-public class dayController extends Day {
-    private String fields = "date";
+public class attendantController extends Attendant {
+    private String fields = "name, telephone, email";
+    public attendantController() throws SQLException, IOException {
+    }
 
-    public dayController() throws SQLException, IOException {
+    public ResultSet index() throws SQLException {
+        return this.all();
     }
 
     public ResultSet show(String id) throws SQLException {
         return this.find(id);
     }
 
-    public boolean save(String date) throws  SQLException{
-        String values = "\"" + date + "\"";
+    public boolean create(String name, String telephone, String email) throws SQLException{
+        String values = "\"" + name + "\",\"" + telephone + "\",\"" + email +"\"";
         this.save(fields, values);
         return true;
     }
@@ -34,5 +37,4 @@ public class dayController extends Day {
         this.delete(id);
         return true;
     }
-
 }

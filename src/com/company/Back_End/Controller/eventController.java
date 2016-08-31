@@ -30,7 +30,7 @@ public class eventController extends Event {
         return this.find(id);
     }
 
-    public boolean updata (String[] fields, String[] values, String id) throws SQLException {
+    public boolean updata (String[] fields, Object[] values, String id) throws SQLException {
         this.update(fields, values, "id = " + id);
         return true;
     }

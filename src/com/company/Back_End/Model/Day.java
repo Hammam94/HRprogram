@@ -18,4 +18,8 @@ public class Day extends model {
     public ResultSet event(String id) throws SQLException {
         return this.belongsToManytoMany("event", id);
     }
+
+    public ResultSet attendant(String id) throws SQLException{
+        return this.manyTOManyTables("attendant" ,"event", id);
+    }
 }

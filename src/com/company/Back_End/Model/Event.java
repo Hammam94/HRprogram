@@ -18,5 +18,9 @@ public class Event extends model {
         return this.belongsToManytoMany("day", id);
     }
 
+    public ResultSet attendantDay(String id) throws SQLException {
+        return this.belongsToManytoMany("attendants_day", id);
+    }
+
 
 }

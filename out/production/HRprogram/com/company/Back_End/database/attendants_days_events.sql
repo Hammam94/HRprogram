@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS attendants_events(
+CREATE TABLE IF NOT EXISTS attendants_days_events(
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     event_id INTEGER NOT NULL,
     day_id INTEGER NOT NULL,
