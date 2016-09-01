@@ -30,13 +30,15 @@ public class attendantController extends Attendant {
 
     public boolean attachEvent(String eventId, String attendantId) throws SQLException {
         String values = eventId + ", " +attendantId;
-        this.attach("event", values);
+        String fields = "event_id, attendant_id";
+        this.attach("event", fields, values);
         return true;
     }
 
     public boolean attachEventDays(String eventId, String attendantId, String dayId) throws SQLException{
         String values = eventId + "," + dayId + "," + attendantId;
-        this.attach("days_event", values);
+        String fields = "event_id, day_id, attendant_id";
+        this.attach("days_event", fields, values);
         return true;
     }
 

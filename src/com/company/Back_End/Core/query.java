@@ -36,8 +36,8 @@ public class query {
         stat.executeUpdate(sql);
     }
 
-    public void insertAttach(String table, String values) throws SQLException {
-        String sql = "INSERT INTO " + table + " VALUES (" + values + ");";
+    public void insertAttach(String table, String fields, String values) throws SQLException {
+        String sql = "INSERT INTO " + table + "(" + fields + ") VALUES (" + values + ");";
         stat.executeUpdate(sql);
     }
 
@@ -55,6 +55,7 @@ public class query {
     /////////////////////////////                           Delete group                              ///////////////////////////////////////////////////////////////////////////
     public void delete(String table, String condition) throws SQLException {
         String sql = "DELETE from " + table + " WHERE " + condition + ";";
+        System.out.println(sql);
         stat.executeUpdate(sql);
     }
 
@@ -80,9 +81,8 @@ public class query {
         return stat.executeQuery(sql);
     }
 
-    public ResultSet selectAllByIdBelongsMany(String ftable, String stable, String id) throws SQLException {
-        String secondId = stable.substring(0, stable.length() - 1);
-        String sql= "SELECT * FROM " + ftable  + " WHERE " + ftable + ".id IN (SELECT " + secondId + "_id FROM " + ftable + " NATURAL JOIN " + stable + " WHERE " + ftable + ".id = " + id + ");";
+    public ResultSet selectAllByIdBelongsMany(String ftable, String stable, String secondId, String id) throws SQLException {
+        String sql= "SELECT * FROM " + ftable  + " WHERE " + ftable + ".id IN (SELECT " + ftable.substring(0,ftable.length()-1) + "_id FROM " + stable+ " WHERE " + secondId + "_id = " + id + ");";
         return stat.executeQuery(sql);
     }
 
@@ -98,6 +98,11 @@ public class query {
 
     public ResultSet selectAllTable(String table) throws SQLException {
         String sql = "SELECT * FROM "+ table + ";";
+        return stat.executeQuery(sql);
+    }
+
+    public ResultSet selectAllbyIdBelongsTables(String ftable, String stable, String searchRole, String id) throws SQLException{
+        String sql ="SELECT * FROM " + ftable + " WHERE " + ftable + ".id IN ( SELECT " + ftable.substring(0,ftable.length() - 1) + "_id FROM " + stable + " WHERE " + searchRole + "_id = " + id + ");";
         return stat.executeQuery(sql);
     }
 

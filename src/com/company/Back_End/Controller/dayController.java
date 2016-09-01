@@ -10,16 +10,19 @@ import java.sql.SQLException;
  * Created by user on 8/30/2016.
  */
 public class dayController extends Day {
-    private String fields = "date";
+    private String fields = "data";
 
     public dayController() throws SQLException, IOException {
     }
 
+    public ResultSet index() throws SQLException{
+        return this.all();
+    }
     public ResultSet show(String id) throws SQLException {
         return this.find(id);
     }
 
-    public boolean save(String date) throws  SQLException{
+    public boolean create(String date) throws  SQLException{
         String values = "\"" + date + "\"";
         this.save(fields, values);
         return true;
@@ -31,7 +34,8 @@ public class dayController extends Day {
     }
 
     public boolean delete(String id) throws SQLException {
-        this.delete(id);
+        System.out.println(id);
+        this.remove(id);
         return true;
     }
 

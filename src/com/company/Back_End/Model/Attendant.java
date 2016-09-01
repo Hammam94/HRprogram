@@ -13,6 +13,7 @@ public class Attendant extends model {
     public Attendant() throws SQLException, IOException {
         this.createTable("attendants.sql");
         this.createTable("attendants_days_events.sql");
+        this.createTable("attendants_events.sql");
     }
 
     public ResultSet event(String id) throws SQLException{

@@ -20,7 +20,7 @@ public class eventController extends Event {
         return this.all();
     }
 
-    public boolean save(String eventName, String eventType, String startTime, String endTime, String numberOfDays) throws SQLException {
+    public boolean create(String eventName, String eventType, String startTime, String endTime, String numberOfDays) throws SQLException {
         String values = "\"" + eventName + "\", \""+ eventType + "\", \"" + startTime + "\", \"" + endTime + "\", " + String.valueOf(numberOfDays);
         this.save(fields,values);
         return true;
@@ -28,7 +28,8 @@ public class eventController extends Event {
 
     public boolean attachDay(String eventId, String dayId) throws SQLException {
         String values = eventId + ", " + dayId;
-        this.attach("day", values);
+        String fields = "event_id, day_id";
+        this.attach("day", fields, values);
         return true;
     }
 
