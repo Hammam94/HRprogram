@@ -20,6 +20,6 @@ public class Day extends model {
     }
 
     public ResultSet attendant(String id) throws SQLException{
-        return this.manyTOManyTables("attendant" ,"event", id);
+        return this.manyTOManyTables("attendant", "attendants", "events", id);
     }
 }

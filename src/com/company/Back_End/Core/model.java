@@ -97,12 +97,16 @@ public class model{
         return myquires.selectAllTable(getClassName() + "s");
     }
 
-    public void attach(String role, String id,String key) throws SQLException {
-        myquires.insertAttach(getclassNameforattach(role), id, key );
+    public void attach(String role, String values) throws SQLException {
+        myquires.insertAttach(getclassNameforattach(role), values);
     }
 
-    public void attachInverse(String role, String id,String key) throws SQLException{
-        myquires.insertAttach(getclassNameforattach(role), key, id);
+    public void attachMany(String frole, String srole, String values) throws SQLException {
+        myquires.insertAttach(frole + "s_" + getClassName() + "s_" + srole + "s", values);
+    }
+
+    public void attachInverse(String role, String values) throws SQLException{
+        myquires.insertAttach(getclassNameforattach(role), values);
     }
 
     public void dettach(String role, String id, String value) throws SQLException {
@@ -133,9 +137,14 @@ public class model{
         return myquires.selectAllWhere(getclassNameforattach(role),  getClassName() + "_id = " + id );
     }
 
-    public ResultSet manyTOManyTables(String firstRole, String secondRole, String id) throws SQLException{
+    public ResultSet manyTOManyTables(String mainRole, String firstRole, String id) throws SQLException{
         String className = getClassName();
-        return myquires.selectAllWhere(firstRole + "_" + className + "_" + secondRole, className +"_id = " + id );
+        return myquires.selectAllByIdBelongs(mainRole + "s",getclassNameforattach(firstRole), id );
+    }
+
+    public ResultSet manyTOManyTables(String mainRole, String firstRole, String secondRole, String id) throws SQLException{
+        String className = getClassName() + "s";
+        return myquires.selectAllByIdBelongs(mainRole + "s",firstRole + "_" + className + "_" + secondRole, id);
     }
 
     /////////////////////////////// Private methods ////////////////////////////////////////////////////////////////////

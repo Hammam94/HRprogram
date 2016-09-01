@@ -35,4 +35,12 @@ public class dayController extends Day {
         return true;
     }
 
+    public ResultSet getAttendants(String id) throws SQLException{
+        return this.attendant(id);
+    }
+
+    public ResultSet getEvents(String id) throws SQLException {
+        return this.event(id);
+    }
+
 }

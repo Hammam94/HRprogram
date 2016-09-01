@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS attendants_events(
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    event_id INTEGER NOT NULL,
+    attendant_id INTEGER NOT NULL
+)

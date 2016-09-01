@@ -28,6 +28,18 @@ public class attendantController extends Attendant {
         return true;
     }
 
+    public boolean attachEvent(String eventId, String attendantId) throws SQLException {
+        String values = eventId + ", " +attendantId;
+        this.attach("event", values);
+        return true;
+    }
+
+    public boolean attachEventDays(String eventId, String attendantId, String dayId) throws SQLException{
+        String values = eventId + "," + dayId + "," + attendantId;
+        this.attach("days_event", values);
+        return true;
+    }
+
     public boolean updata (String[] fields, Object[] values, String id) throws SQLException {
         this.update(fields, values, "id = " + id);
         return true;
@@ -36,5 +48,13 @@ public class attendantController extends Attendant {
     public boolean delete(String id) throws SQLException {
         this.delete(id);
         return true;
+    }
+
+    public ResultSet getDays(String id) throws SQLException{
+        return this.day(id);
+    }
+
+    public ResultSet getEvents(String id) throws SQLException{
+        return this.event(id);
     }
 }

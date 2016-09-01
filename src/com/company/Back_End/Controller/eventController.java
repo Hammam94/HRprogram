@@ -26,6 +26,12 @@ public class eventController extends Event {
         return true;
     }
 
+    public boolean attachDay(String eventId, String dayId) throws SQLException {
+        String values = eventId + ", " + dayId;
+        this.attach("day", values);
+        return true;
+    }
+
     public ResultSet show(String id) throws SQLException {
         return this.find(id);
     }
@@ -39,4 +45,13 @@ public class eventController extends Event {
         this.delete(id);
         return true;
     }
+
+    public ResultSet getDays(String id) throws SQLException{
+        return this.day(id);
+    }
+
+    public ResultSet getAttendants(String id) throws  SQLException{
+        return this.attendant(id);
+    }
+
 }

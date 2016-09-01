@@ -36,8 +36,8 @@ public class query {
         stat.executeUpdate(sql);
     }
 
-    public void insertAttach(String table, String firstValue, String lastValue) throws SQLException {
-        String sql = "INSERT INTO " + table + " VALUES (" + firstValue + " , " + lastValue + ");";
+    public void insertAttach(String table, String values) throws SQLException {
+        String sql = "INSERT INTO " + table + " VALUES (" + values + ");";
         stat.executeUpdate(sql);
     }
 

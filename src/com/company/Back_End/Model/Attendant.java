@@ -20,6 +20,6 @@ public class Attendant extends model {
     }
 
     public ResultSet day(String id) throws SQLException {
-        return this.belongsToManytoMany("days_event", id);
+        return this.manyTOManyTables("day","days_event", id);
     }
 }
