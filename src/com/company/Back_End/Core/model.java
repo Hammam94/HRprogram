@@ -1,8 +1,11 @@
 package com.company.Back_End.Core;
+import com.sun.rowset.internal.Row;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
+import java.util.List;
 
 /**
  * Created by user on 8/25/2016.
@@ -64,11 +67,7 @@ public class model{
         myquires.dropTable(getClassName());
     }
 
-    public void remove(String id) throws SQLException {
-        String table = getClassName() + "s";
-        System.out.print(table);
-        myquires.delete(table, "id = " + id);
-    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void update(String[] fields, Object[] values, String condition) throws SQLException {
         String data = "";
@@ -86,18 +85,6 @@ public class model{
         myquires.insert(getClassName() + "s", fields, values);
     }
 
-    public ResultSet where(String condition) throws SQLException {
-        return myquires.selectAllWhere(getClassName() + "s", condition);
-    }
-
-    public ResultSet find(String id) throws SQLException {
-        return myquires.selectAllById(getClassName() + "s",id);
-    }
-
-    public ResultSet all() throws SQLException {
-        return myquires.selectAllTable(getClassName() + "s");
-    }
-
     public void attach(String role, String fields, String values) throws SQLException {
         myquires.insertAttach(getclassNameforattach(role), fields, values);
     }
@@ -110,16 +97,26 @@ public class model{
         myquires.insertAttach(getclassNameforattach(role), fields, values);
     }
 
+    public void manyTOManyAttach(String role, String fields, String values) throws SQLException {
+        myquires.insert(getclassNameforattach(role), fields, values);
+    }
+
     public void dettach(String role, String id, String value) throws SQLException {
         myquires.deleteDettach(getclassNameforattach(role), id , role, value);
     }
 
-    public ResultSet belongsToMany(String role, String id) throws SQLException {
-        return myquires.selectAllByIdBelongs(getClassName(), getClassNameForSelect(role), id);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public ResultSet all() throws SQLException {
+        return myquires.selectAllTable(getClassName() + "s");
     }
 
-    public ResultSet belongsToManytoMany(String role, String id) throws SQLException {
-        return myquires.selectAllByIdBelongsMany(role + "s", getClassNameForSelect(role), getColumnidName(),id);
+    public ResultSet find(String id) throws SQLException {
+        return myquires.selectAllById(getClassName() + "s",id);
+    }
+
+    public ResultSet where(String condition) throws SQLException {
+        return myquires.selectAllWhere(getClassName() + "s", condition);
     }
 
     public ResultSet belongsTo(String role, String id) throws SQLException {
@@ -130,12 +127,8 @@ public class model{
         return myquires.selectAllByMany(role + "s", getClassName() + "_id" , id);
     }
 
-    public void manyTOManyAttach(String role, String fields, String values) throws SQLException {
-        myquires.insert(getClassNameForSelect(role), fields, values);
-    }
-
-    public ResultSet manyToMany(String role, String id) throws SQLException {
-        return myquires.selectAllWhere(getClassNameForSelect(role),  getClassName() + "_id = " + id );
+    public ResultSet belongsToManytoMany(String role, String id) throws SQLException {
+        return myquires.selectAllByIdBelongsMany(role + "s", getClassNameForSelect(role), getColumnidName(),id);
     }
 
     public ResultSet manyTOManyTables(String mainRole, String firstRole, String id) throws SQLException{
@@ -145,6 +138,14 @@ public class model{
     public ResultSet manyTOManyTables(String mainRole, String firstRole, String secondRole, String id) throws SQLException{
         String className = getClassName() + "s";
         return myquires.selectAllByIdBelongs(mainRole + "s",firstRole + "_" + className + "_" + secondRole, id);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void remove(String id) throws SQLException {
+        String table = getClassName() + "s";
+        System.out.print(table);
+        myquires.delete(table, "id = " + id);
     }
 
     /////////////////////////////// Private methods ////////////////////////////////////////////////////////////////////
