@@ -14,7 +14,7 @@ public class Problem extends model {
         this.createTable("problems.sql");
     }
 
-    public ResultSet solution(String id) throws SQLException {
-        return this.hasMany("solution", id);
+    public ResultSet comment(String id) throws SQLException {
+        return this.hasMany("comment", id);
     }
 }

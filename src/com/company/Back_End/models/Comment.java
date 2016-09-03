@@ -9,9 +9,9 @@ import java.sql.SQLException;
 /**
  * Created by user on 9/3/2016.
  */
-public class Solution extends model {
-    public Solution() throws SQLException, IOException {
-        this.createTable("solutions.sql");
+public class Comment extends model {
+    public Comment() throws SQLException, IOException {
+        this.createTable("comments.sql");
     }
 
     public ResultSet problem(String id) throws SQLException {

@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS answers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    answer TEXT NOT NULL,
+    interviewee_id INTEGER NOT NULL,
+    question_id INTEGER NOT NULL
+)

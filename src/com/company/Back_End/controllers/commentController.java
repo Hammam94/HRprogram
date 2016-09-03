@@ -1,6 +1,6 @@
 package com.company.Back_End.controllers;
 
-import com.company.Back_End.models.Solution;
+import com.company.Back_End.models.Comment;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,14 +8,14 @@ import java.sql.SQLException;
 /**
  * Created by user on 9/3/2016.
  */
-public class solutionController extends Solution {
-    private String fields = "solution, problem_id";
+public class commentController extends Comment {
+    private String fields = "comment, problem_id";
 
-    public solutionController() throws SQLException, IOException {
+    public commentController() throws SQLException, IOException {
     }
 
-    public boolean create(String solution, String problemId) throws SQLException {
-        String values = "\"" + solution + "\", \"" + problemId + "\"";
+    public boolean create(String comment, String problemId) throws SQLException {
+        String values = "\"" + comment + "\", \"" + problemId + "\"";
         this.save(fields, values);
         return true;
     }

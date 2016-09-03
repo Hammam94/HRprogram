@@ -11,6 +11,7 @@ import java.sql.SQLException;
  */
 public class problemController extends Problem {
     private String fields = "title, problem_subject, email";
+
     public problemController() throws SQLException, IOException {
     }
 
@@ -39,6 +40,6 @@ public class problemController extends Problem {
     }
 
     public ResultSet getSolutions(String problemId) throws SQLException {
-        return this.solution(problemId);
+        return this.comment(problemId);
     }
 }
