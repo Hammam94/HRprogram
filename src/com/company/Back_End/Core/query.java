@@ -75,6 +75,11 @@ public class query {
         return stat.executeQuery(sql);
     }
 
+    public ResultSet selectAllByRole(String table, String key, String value) throws SQLException{
+        String sql = "SELECT * FROM " + table + " WHERE " + key + " = " + value + ";";
+        return stat.executeQuery(sql);
+    }
+
     public ResultSet selectAllByIdBelongs(String ftable, String stable, String id) throws SQLException {
         String secondId = stable.substring(0, stable.length() - 1);
         String sql= "SELECT * FROM " + ftable  + " WHERE " + ftable + ".id IN (SELECT " + secondId + "_id FROM " + ftable + " NATURAL JOIN " + stable + " WHERE " + ftable + ".id = " + id + ");";
@@ -103,6 +108,21 @@ public class query {
 
     public ResultSet selectAllbyIdBelongsTables(String ftable, String stable, String searchRole, String id) throws SQLException{
         String sql ="SELECT * FROM " + ftable + " WHERE " + ftable + ".id IN ( SELECT " + ftable.substring(0,ftable.length() - 1) + "_id FROM " + stable + " WHERE " + searchRole + "_id = " + id + ");";
+        return stat.executeQuery(sql);
+    }
+
+    public ResultSet selectAggregationALL(String aggregationName, String table) throws SQLException {
+        String sql = "SELECT " + aggregationName + "(*) AS "+ aggregationName +" FROM " + table + ";";
+        return stat.executeQuery(sql);
+    }
+
+    public ResultSet selectAggregationRole(String aggregationName, String table, String role) throws SQLException {
+        String sql = "SELECT " + aggregationName + "(" + role + ") AS "+ aggregationName + " FROM " + table + ";";
+        return stat.executeQuery(sql);
+    }
+
+    public ResultSet selectAggregationRoleCondition(String aggregationName, String table, String role, String condition) throws SQLException {
+        String sql = "SELECT " + aggregationName + "(" + role + ") FROM " + table + "WHERE " + condition + ";";
         return stat.executeQuery(sql);
     }
 

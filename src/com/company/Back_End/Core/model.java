@@ -112,6 +112,10 @@ public class model{
         return myquires.selectAllById(getClassName() + "s",id);
     }
 
+    public ResultSet findBy(String role, String value) throws SQLException {
+        return myquires.selectAllByRole(getClassName() + "s", role, value);
+    }
+
     public ResultSet where(String condition) throws SQLException {
         return myquires.selectAllWhere(getClassName() + "s", condition);
     }
@@ -135,6 +139,18 @@ public class model{
     public ResultSet manyTOManyTables(String mainRole, String firstRole, String secondRole, String id) throws SQLException{
         String className = getClassName() + "s";
         return myquires.selectAllByIdBelongs(mainRole + "s",firstRole + "_" + className + "_" + secondRole, id);
+    }
+
+    public ResultSet aggregation(String aggregationName) throws SQLException {
+        return myquires.selectAggregationALL(aggregationName, getClassName() + "s");
+    }
+
+    public ResultSet aggregation(String aggregationName, String role) throws SQLException {
+        return myquires.selectAggregationRole(aggregationName, getClassName() + "s" , role);
+    }
+
+    public ResultSet aggregation(String aggregationName, String role, String condition) throws SQLException {
+        return myquires.selectAggregationRoleCondition(aggregationName, getClassName() + "s", role, condition);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
