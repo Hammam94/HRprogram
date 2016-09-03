@@ -13,6 +13,10 @@ public class attendantController extends Attendant {
     public attendantController() throws SQLException, IOException {
     }
 
+    public ResultSet Aggregation() throws SQLException{
+        return this.aggregation("AVG", "id");
+    }
+
     public ResultSet index() throws SQLException {
         return this.all();
     }

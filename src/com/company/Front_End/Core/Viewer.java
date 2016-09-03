@@ -18,7 +18,7 @@ public class Viewer extends viewer {
 
     public Viewer(String currentName){
         this.currentTitle = currentName;
-        initFrame();
+        //initFrame();
     }
 
     private void changeFrameTitle(String newTitle){

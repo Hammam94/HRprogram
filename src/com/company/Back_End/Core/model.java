@@ -153,6 +153,10 @@ public class model{
         return myquires.selectAggregationRoleCondition(aggregationName, getClassName() + "s", role, condition);
     }
 
+    public ResultSet orderedBy(String condition, String orderedColumns, String arrenged) throws SQLException {
+        return myquires.order(getClassName() + "s", condition, orderedColumns, arrenged);
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public void remove(String id) throws SQLException {

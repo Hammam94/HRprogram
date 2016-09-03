@@ -126,4 +126,9 @@ public class query {
         return stat.executeQuery(sql);
     }
 
+    public ResultSet order(String tableName, String condition, String orderedcColumns, String arrenged)throws SQLException {
+        String sql = "SELECT * FROM " + tableName + " " + condition + " ORDER BY " + orderedcColumns + " " + arrenged + ";";
+        return stat.executeQuery(sql);
+    }
+
 }
