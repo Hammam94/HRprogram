@@ -1,7 +1,6 @@
-package com.company.Back_End.Model;
+package com.company.Back_End.models;
 
-import com.company.Back_End.Core.model;
-
+import com.company.Back_End.core.model;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,59 +1,70 @@
 package com.company.Front_End.Core;
 
-import com.company.Back_End.Core.viewer;
-
+import com.company.Back_End.core.viewer;
+import javafx.embed.swing.JFXPanel;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
-import java.util.List;
+import java.awt.BorderLayout;
 import java.util.Stack;
 
 /**
  * Created by user on 8/29/2016.
  */
 public class Viewer extends viewer {
-    protected static JFrame mainFrame = new JFrame();
+    private JFrame jFrame;
+    private JFXPanel mainPanel;
+    private Stack<JFXPanel> backwardPanels = new Stack<JFXPanel>();
+    private Stack<JFXPanel> forwardPanels = new Stack<JFXPanel>();
+    private String currentTitle;
 
-    private static Stack<JPanel> backwardPanels = new Stack<JPanel>();
-    private static Stack<JPanel> forwardPanels = new Stack<JPanel>();
-    private static JPanel mainPanel;
-
-    public void design(){
-        mainFrame = new JFrame("APP");
-        mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mainFrame.setVisible(true);
-        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public Viewer(String currentName){
+        this.currentTitle = currentName;
+        initFrame();
     }
 
-    public void setMainPanel(JPanel mainPanel){
+    private void changeFrameTitle(String newTitle){
+        this.currentTitle = newTitle;
+    }
+
+    private void initFrame() {
+        jFrame = new JFrame();
+        jFrame.setTitle(currentTitle);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setLayout(new BorderLayout());
+        jFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        jFrame.setVisible(true);
+    }
+
+    public void setMainPanel (JFXPanel mainPanel){
         this.mainPanel = mainPanel;
-        mainFrame.setContentPane(mainPanel);
-        mainFrame.validate();
+        this.mainPanel.setVisible(true);
+        jFrame.setContentPane(this.mainPanel);
+        jFrame.validate();
     }
 
-    public static void openPanel(JPanel currentPanel, JPanel targetPanel){
+    public void openPanel(JFXPanel currentPanel, JFXPanel targetPanel){
         backwardPanels.push(currentPanel);
-        mainFrame.setContentPane(targetPanel);
-        mainFrame.validate();
+        jFrame.setContentPane(targetPanel);
+        jFrame.validate();
     }
 
-    public static void backward(JPanel currentPanel){
-        forwardPanels.push((JPanel) mainFrame.getContentPane());
+    public void backward(JFXPanel currentPanel){
+        forwardPanels.push((JFXPanel) jFrame.getContentPane());
         if(backwardPanels.isEmpty()){
-            mainFrame.setContentPane(mainPanel);
-            mainFrame.validate();
+            jFrame.setContentPane(mainPanel);
+            jFrame.validate();
         }else{
-            mainFrame.setContentPane(backwardPanels.pop());
-            mainFrame.validate();
+            jFrame.setContentPane(backwardPanels.pop());
+            jFrame.validate();
         }
     }
 
-    public static boolean forward(JPanel currentPanel){
-        backwardPanels.push((JPanel) mainFrame.getContentPane());
+    public boolean forward(JFXPanel currentPanel){
+        backwardPanels.push((JFXPanel) jFrame.getContentPane());
         if(forwardPanels.isEmpty()){
             return false;
         }else{
-            mainFrame.setContentPane(backwardPanels.pop());
-            mainFrame.validate();
+            jFrame.setContentPane(backwardPanels.pop());
+            jFrame.validate();
             return true;
         }
     }

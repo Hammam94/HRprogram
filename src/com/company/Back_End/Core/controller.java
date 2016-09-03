@@ -1,4 +1,4 @@
-package com.company.Back_End.Core;
+package com.company.Back_End.core;
 
 import java.lang.reflect.*;
 import java.net.URL;
@@ -11,7 +11,7 @@ public class controller extends ClassLoader {
     private String controllerName, methodName;
 
     public controller (String controllerName, String methodName){
-        this.controllerName = "com.company.Back_End.Controller." + controllerName;
+        this.controllerName = "com.company.Back_End.controllers." + controllerName;
         this.methodName = methodName;
     }
 

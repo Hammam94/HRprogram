@@ -1,11 +1,9 @@
-package com.company.Back_End.Core;
-import com.sun.rowset.internal.Row;
+package com.company.Back_End.core;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
-import java.util.List;
 
 /**
  * Created by user on 8/25/2016.
@@ -13,7 +11,6 @@ import java.util.List;
 public class model{
 
     private query myquires;
-
     public model () throws SQLException {
         Connection c = null;
         try {

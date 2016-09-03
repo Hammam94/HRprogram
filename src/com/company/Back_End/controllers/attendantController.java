@@ -1,7 +1,6 @@
-package com.company.Back_End.Controller;
+package com.company.Back_End.controllers;
 
-import com.company.Back_End.Model.Attendant;
-
+import com.company.Back_End.models.Attendant;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;

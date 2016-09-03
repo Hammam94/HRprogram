@@ -1,4 +1,4 @@
-package com.company.Back_End.Core;
+package com.company.Back_End.core;
 
 import java.sql.*;
 /**
