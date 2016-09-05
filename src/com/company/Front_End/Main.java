@@ -1,19 +1,23 @@
 package com.company.Front_End;
 
-import com.company.Front_End.Core.Viewer;
-import com.company.Front_End.views.events.index;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
 
-    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, SQLException {
-        Viewer v = new Viewer("events");
-        v.createControllerInstance("attendantController", "Aggregation");
-        String[] params = {};
-        ResultSet r = (ResultSet) v.getdata(params);
-        System.out.println(r.getInt("AVG"));
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("/com.company/Front_End/views/application/application.fxml"));
+        primaryStage.setTitle("HRProgram");
+        primaryStage.setScene(new Scene(root, 500, 500));
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
 
