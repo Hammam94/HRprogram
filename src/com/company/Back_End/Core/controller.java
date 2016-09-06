@@ -19,7 +19,7 @@ public class controller extends ClassLoader {
         this.methodName = newMethodName;
     }
 
-    public Object getData(String[] params) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+    public Object getData(Object[] params) throws ClassNotFoundException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         Class<?> paramters[] = new Class[params.length];
         for (int i = 0; i < params.length; ++i) {
             paramters[i] = params[i].getClass();

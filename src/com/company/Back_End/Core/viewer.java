@@ -1,6 +1,7 @@
 package com.company.Back_End.core;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 /**
  * Created by user on 8/27/2016.
@@ -16,8 +17,11 @@ public class viewer  {
         controllerInstance.changeMethodName(newMethod);
     }
 
-    public Object getdata(String[] params) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public Object getdata(Object[] params) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         return controllerInstance.getData(params);
     }
 
+    public void close() throws SQLException {
+        model.c.close();
+    }
 }

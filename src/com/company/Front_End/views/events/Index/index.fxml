@@ -1,0 +1,9 @@
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<GridPane alignment="center" hgap="10" styleClass="root" vgap="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Front_End.views.events.Form.form">
+    <padding><Insets bottom="25" left="25" right="25" top="25" /></padding>
+    <children>
+
+    </children>
+</GridPane>

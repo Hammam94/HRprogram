@@ -1,0 +1,5 @@
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" styleClass="root" vgap="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Front_End.views.events.Update.update">
+    <fx:include fx:id="form" source="/com/company/Front_End/views/events/Form/form.fxml"/>
+</GridPane>

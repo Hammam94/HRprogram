@@ -11,8 +11,9 @@ import java.sql.*;
 public class model{
 
     private query myquires;
+    public static Connection c;
     public model () throws SQLException {
-        Connection c = null;
+        c = null;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -23,6 +24,9 @@ public class model{
         myquires = new query(c);
     }
 
+    public void close() throws SQLException {
+        c.close();
+    }
     public boolean createTable(String tableName) throws SQLException, IOException {
         String content = null;
         String filePath = "src/com/company/Back_End/database/" +tableName;
@@ -69,13 +73,13 @@ public class model{
     public void update(String[] fields, Object[] values, String condition) throws SQLException {
         String data = "";
         for(int i = 0; i < fields.length; ++i){
-            if(values[i].getClass() == int.class){
-                data += i >= fields.length ? fields[i] + " = " + (int) values[i] : fields[i] + " = " + (int) values[i] + " , ";
+            if(values[i].getClass() == Integer.class){
+                data += i + 1 >= fields.length ? fields[i] + " = " + (int) values[i] : fields[i] + " = " + (int) values[i] + " , ";
             } else {
-                data += i >= fields.length ? fields[i] + " = \"" + (String) values[i] + "\"" : fields[i] + " = \"" + (String) values[i] + "\" , ";
+                data += i + 1 >= fields.length ? fields[i] + " = \"" + (String) values[i] + "\"" : fields[i] + " = \"" + (String) values[i] + "\" , ";
             }
         }
-        myquires.update(getClassName() + "s",data,condition);
+        myquires.update(getClassName() + "s", data, condition);
     }
 
     public void save(String fields, String values) throws SQLException {

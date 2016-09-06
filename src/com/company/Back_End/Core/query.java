@@ -48,7 +48,8 @@ public class query {
 
     /////////////////////////////                           Update group                              ///////////////////////////////////////////////////////////////////////////
     public void update(String table, String data, String condition) throws SQLException {
-        String sql = "UPDATE " +table + " set" + data + " where" + condition + ";";
+        String sql = "UPDATE " +table + " set " + data + " where " + condition + ";";
+        System.out.println(sql);
         stat.executeUpdate(sql);
     }
 
