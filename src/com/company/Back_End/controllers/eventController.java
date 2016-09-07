@@ -14,9 +14,15 @@ public class eventController extends Event {
     public eventController() throws SQLException, IOException {
     }
 
-
+    public ResultSet rowsNumber(String aggregationName, String role) throws SQLException {
+        return this.aggregation(aggregationName, role);
+    }
     public ResultSet index() throws SQLException {
         return this.all();
+    }
+
+    public ResultSet specifiedIndex(String id) throws SQLException {
+        return this.where("id > " + id);
     }
 
     public boolean create(String eventName, String eventType, String startTime, String endTime, String numberOfDays) throws SQLException {

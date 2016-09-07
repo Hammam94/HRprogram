@@ -38,6 +38,11 @@ public class form {
                        end  = endTime.getText(),
                        days = numberOfDays.getText();
                 viewer v = new viewer();
+                try {
+                    v.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 v.createControllerInstance("eventController", "create");
                 String[] params = {name, type, start, end, days};
                 try {

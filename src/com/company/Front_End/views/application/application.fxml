@@ -20,6 +20,11 @@
                 <fx:include source="/com/company/Front_End/views/events/Index/index.fxml" />
             </content>
         </Tab>
+        <Tab fx:id="eventsShow" text="events.show" >
+            <content>
+                <fx:include source="/com/company/Front_End/views/events/Show/show.fxml" />
+            </content>
+        </Tab>
     </tabs>
 </TabPane>
 
