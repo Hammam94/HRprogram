@@ -1,17 +1,15 @@
-package com.company.Front_End.views.events;
+package com.company.Front_End.views.events.Index;
 
-import javafx.application.Platform;
+import com.company.Back_End.core.viewer;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.embed.swing.JFXPanel;
-import javafx.geometry.Insets;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.VBox;
 import javafx.util.Callback;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,52 +17,37 @@ import java.sql.SQLException;
 /**
  * Created by user on 9/2/2016.
  */
-public class index extends JFXPanel {
-    private TableView table = new TableView();
-    private VBox pane;
-    private ResultSet data;
-    private ObservableList<ObservableList> rows;
+public class index {
+    @FXML private TableView indexTable;
+    @FXML private TableColumn name, eventType, startTime, endTime, numberOfDays;
+    private static ObservableList<ObservableList> rows = FXCollections.observableArrayList();
 
-    public index(ResultSet data) throws SQLException {
-        this.data = data;
-        rows = FXCollections.observableArrayList();
-        init();
-    }
-
-    private void init() throws SQLException {
-        pane = new VBox();
-        pane.setSpacing(20);
-        pane.setPadding(new Insets(10, 0, 0, 10));
-        pane.setPrefHeight(2000);
-
-        table.setPrefSize(pane.getPrefWidth(), pane.getPrefHeight());
-        for(int i=0 ; i<data.getMetaData().getColumnCount(); i++){
-            final int j = i;
-            TableColumn col = new TableColumn(data.getMetaData().getColumnName(i+1));
-            col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
-                    return new SimpleStringProperty(param.getValue().get(j).toString());
-                }
-            });
-
-            table.getColumns().addAll(col);
+    @FXML
+    public void initialize() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, SQLException {
+        viewer view = new viewer();
+        view.close();
+        view.createControllerInstance("eventController", "index");
+        Object[] params = {};
+        ResultSet rs = (ResultSet) view.getdata(params);
+        TableColumn[] columns = {name, eventType, startTime, endTime, numberOfDays};
+        for(int i = 0; i < columns.length; ++i){
+            initColumns(columns[i], i+1);
         }
-        while(data.next()){
+        while (rs.next()){
             ObservableList<String> row = FXCollections.observableArrayList();
-            for(int i=1 ; i<=data.getMetaData().getColumnCount(); i++){
-                row.add(data.getString(i));
+            for(int i = 1; i<=rs.getMetaData().getColumnCount(); i++){
+                row.add(rs.getString(i));
             }
             rows.add(row);
         }
-
-
-        table.setItems(rows);
-        pane.getChildren().add(table);
-        Platform.runLater(this::createScene);
+        indexTable.setItems(rows);
     }
 
-    private void createScene() {
-        Scene scene = new Scene(pane);
-        setScene(scene);
+    private void initColumns(TableColumn tableColumn, int order){
+        tableColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
+                return new SimpleStringProperty(param.getValue().get(order).toString());
+            }
+        });
     }
 }

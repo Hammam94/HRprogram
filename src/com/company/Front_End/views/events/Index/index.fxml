@@ -1,9 +1,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<GridPane alignment="center" hgap="10" styleClass="root" vgap="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Front_End.views.events.Form.form">
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+
+<GridPane alignment="center" hgap="10" styleClass="root" vgap="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Front_End.views.events.Index.index">
     <padding><Insets bottom="25" left="25" right="25" top="25" /></padding>
     <children>
+        <TableView fx:id="indexTable" prefWidth="420" GridPane.columnIndex="0" GridPane.columnSpan="5" GridPane.rowIndex="2">
+            <columns>
+                <TableColumn fx:id="name" prefWidth="80" text="Name">
 
+                </TableColumn>
+                <TableColumn fx:id="eventType" prefWidth="80" text="Event type">
+
+                </TableColumn>
+                <TableColumn fx:id="startTime" prefWidth="80" text="Start time">
+
+                </TableColumn>
+                <TableColumn fx:id="endTime" prefWidth="80" text="End time">
+
+                </TableColumn>
+                <TableColumn fx:id="numberOfDays" prefWidth="100" text="number of days">
+
+                </TableColumn>
+            </columns>
+        </TableView>
     </children>
 </GridPane>
